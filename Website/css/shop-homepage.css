@@ -1,0 +1,12 @@
+/*!
+ * Start Bootstrap - Shop Homepage (https://startbootstrap.com/template-overviews/shop-homepage)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-shop-homepage/blob/master/LICENSE)
+ */
+ @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Noto+Sans+KR:wght@300&display=swap');
+body {
+  padding-top: 100px;
+  font-family: 'Dongle', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 20px;
+}

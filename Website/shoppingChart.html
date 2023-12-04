@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다담 쇼핑 - 장바구니</title>
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 부트스트랩 핵심 CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- 이 템플릿을 위한 사용자 정의 스타일 -->
+  <link href="css/shop-homepage.css" rel="stylesheet">
+
+  <!-- 다담 로고에 사용할 스타일 -->
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    html, body, .wrapper {
+      height: 100%;
+    }
+    
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      background-image: url("Animated Shape.svg");
+      background-size: cover; /* 전체 배경을 커버하도록 변경 */
+      background-position: center; /* 배경 이미지 중앙에 위치 */
+      color: #000000;
+      font-family: "Euclid Circular A";
+    }
+  
+    .dadam-logo {
+      width: 50px;
+      height: auto;
+      margin-right: 10px;
+    }
+  
+    .navbar-nav .nav-link {
+      color: #87CEEB !important;
+    }
+  
+    .container {
+      color: black;
+      width: 95%; /* 컨테이너 너비 조정 */
+      max-width: 800px; /* 최대 너비 설정 */
+      margin: auto; /* 가운데 정렬 */
+      padding: 5px; /* 패딩 추가 */
+    }
+  
+    .cart-item, .btn-purchase {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      text-align: center; /* 텍스트 중앙 정렬 */
+    }
+  
+    .cart-item button, .btn-purchase {
+      border: none;
+      padding: 5px 10px;
+      margin: 0 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  
+    .cart-item button:hover, .btn-purchase:hover {
+      background-color: rgba(252, 252, 252, 0.9);
+    }
+  
+    @media screen and (max-width: 767px) {
+      /* 모바일 화면을 위한 추가 스타일 */
+      .navbar-nav .nav-link, .container, .cart-item, .btn-purchase {
+        font-size: smaller; /* 모바일 화면에 맞게 폰트 크기 조정 */
+      }
+    }
+  </style>
+  
+
+</head>
+
+<body style="background-color: white;">
+
+  <!-- 내비게이션 바 -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"> <!-- 배경색을 파랑색으로 변경 -->
+    <div class="container">
+      <a class="navbar-brand" href="mainpage.html" style="color: white;">
+        <img src="DLogoW.png" alt="다담 로고" class="dadam-logo"></a> <!-- 다담 로고를 넣을 수 있는 공간 -->
+        <div class="navbar-user-info">
+          <img src="userlogo.png" alt="사용자 로고" width="50px">
+          <span id="username"> 로딩 중...</span>
+          <span id="userMoney"></span>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="mainpage.html" style="color: white;">홈
+              <span class="sr-only">(현재)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color: white;">소개</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color: white;">서비스</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="logout.php" style="color: white;">회원정보 - 로그아웃</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color: white;">찜목록</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color: white;">장바구니</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <h2>장바구니</h2>
+    <div id="cartItems" class="list-group">
+        <!-- 장바구니 아이템이 여기에 추가됩니다 -->
+    </div>
+    <h4 id="totalPrice">총 가격: 0원</h4>
+    <button id="clearCart" class="btn btn-danger">장바구니 초기화</button> <!-- 초기화 버튼 추가 -->
+    <button id="purchase" class="btn btn-purchase">구매하기</button> <!-- 구매하기 버튼 추가 -->
+</div>
+
+<!-- 부트스트랩 핵심 자바스크립트 -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+  function loadCart() {
+      var cart = JSON.parse(localStorage.getItem('cart')) || {};
+      var cartItemsContainer = document.getElementById('cartItems');
+      var totalPrice = 0;
+
+      cartItemsContainer.innerHTML = ''; // 기존 내용을 초기화
+
+      for (var productName in cart) {
+          var quantity = cart[productName];
+          var price = 20000; // 예시 가격
+          var itemTotal = price * quantity;
+
+          totalPrice += itemTotal;
+
+          var itemElement = document.createElement('div');
+          itemElement.classList.add('list-group-item', 'cart-item');
+          itemElement.innerHTML = productName + " - 수량: <span id='quantity-" + productName + "'>" + quantity + "</span> <button onclick='updateQuantity(\"" + productName + "\", -1)'>-</button> <button onclick='updateQuantity(\"" + productName + "\", 1)'>+</button> / 가격: " + itemTotal + "원";
+          cartItemsContainer.appendChild(itemElement);
+      }
+
+      document.getElementById('totalPrice').textContent = "총 가격: " + totalPrice + "원";
+  }
+
+  function updateQuantity(productName, change) {
+      var cart = JSON.parse(localStorage.getItem('cart')) || {};
+      if (cart[productName]) {
+          cart[productName] += change;
+
+          // 수량이 0 이하가 되지 않도록 함
+          if (cart[productName] < 1) {
+              cart[productName] = 1;
+          }
+
+          // 변경된 장바구니 상태를 저장
+          localStorage.setItem('cart', JSON.stringify(cart));
+
+          // 화면 업데이트
+          document.getElementById('quantity-' + productName).textContent = cart[productName];
+          loadCart(); // 장바구니 재로드
+      }
+  }
+
+  function clearCart() {
+  localStorage.removeItem('cart'); // 로컬 스토리지에서 장바구니 정보 삭제
+  loadCart(); // 장바구니 업데이트
+  alert('장바구니가 초기화되었습니다.');
+}
+
+document.getElementById('purchase').addEventListener('click', purchaseItems);
+
+function purchaseItems() {
+  var userMoney = Number(document.getElementById('userMoney').textContent.replace(/[^0-9.-]+/g,""));
+  var totalPrice = calculateTotalPrice();
+  var cart = JSON.parse(localStorage.getItem('cart')) || {};
+
+  if (userMoney >= totalPrice) {
+      // AJAX 요청으로 서버에 구매 정보 전송
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "purchase.php", true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+              var response = JSON.parse(this.responseText);
+              if (response.success) {
+                  alert(response.success);
+                  localStorage.removeItem('cart'); // 장바구니 초기화
+                  loadCart(); // 장바구니 업데이트
+                  loadUserInfo(); // 사용자 정보 업데이트
+              } else if (response.error) {
+                  alert(response.error);
+              }
+          }
+      };
+      xhr.send(JSON.stringify(cart));
+  } else {
+      alert('잔액이 부족합니다.');
+  }
+}
+function calculateTotalPrice() {
+            var cart = JSON.parse(localStorage.getItem('cart')) || {};
+            var totalPrice = 0;
+            for (var productName in cart) {
+                totalPrice += cart[productName] * 20000; // 예시 가격
+            }
+            return totalPrice;
+        }
+
+function loadUserInfo() {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var response = JSON.parse(this.responseText);
+    if (response.username && response.userMoney) {
+      document.getElementById('username').textContent = response.username;
+      document.getElementById('userMoney').textContent = response.userMoney;
+    }
+  }
+};
+xhr.open("GET", "getUserInfo.php", true);
+xhr.send();
+}
+  
+document.getElementById('clearCart').addEventListener('click', clearCart);
+
+// 페이지 로드 시 사용자 정보 로드
+window.onload = function() {
+    loadUserInfo();
+    loadCart();
+};
+</script>
+</body>
+</html>

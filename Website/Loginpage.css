@@ -1,0 +1,131 @@
+@import url(https://fonts.googleapis.com/css?family=Righteous);
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap');
+* {
+    box-sizing: border-box;
+  }
+  
+  html,
+  body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  @keyframes gradient {
+    100% {
+      background-size: 4000px 1000px;
+    }
+  }
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  body {
+    display: grid;
+    place-items: center;
+    background-image: url("Animated\ Shape.svg");
+    background-size: 2000px 1000px;
+    background-position: 0;
+    color: #000000;
+    font-family: 'Righteous';
+    animation: gradient 50s infinite alternate linear;
+  }
+
+  .login {
+    position: fixed;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 변경된 부분 */
+    width: 90%;
+    padding: 50px 24px; /* 변경된 부분 */
+    border-style: solid;
+    border-width: 5px;
+    border-color: #105ec5;
+    border-radius: 70px;
+    background: #ffffff;
+    text-align: center;
+  }
+  
+  @media screen and (min-width: 450px) { /* 변경된 부분 */
+    .login {
+      width: 380px;
+    }
+  }
+  
+  .avatar {
+    margin: 0 auto 16px;
+    height: 200px;
+  }
+  
+  .avatar > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+  }
+  
+  .login-form {
+    display: grid;
+    gap: 12px; /* 변경된 부분 */
+    place-items: center;
+    width: 100%;
+    margin: 0;
+  }
+  
+  .textbox {
+    width: 100%;
+    position: relative;
+  }
+  
+  .textbox span {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translate(0, -50%); /* 변경된 부분 */
+    color: rgba(255, 255, 255);
+  }
+  
+  .login-form input,
+  .login-form button {
+    width: 100%;
+    height: 48px; /* 변경된 부분 */
+    outline: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+  .login-form input {
+    background: transparent;
+    border: 2px solid rgba(0, 0, 0, 0.726);
+    font-size: 18px;
+    padding: 0 20px 0 50px;
+    color: inherit;
+    height: 48px;
+    line-height: 48px;
+    border-radius: 8px;
+}
+  
+  .login-form input:focus {
+    border-color: #157ae1;
+    outline: none;
+  }
+  
+  .login-form input:focus ~ span {
+    color: #157ae1;
+  }
+  
+  .textbox span {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    color: rgba(0, 0, 0, 0.38);
+    font-size: 24px;
+    line-height: 48px;
+  }

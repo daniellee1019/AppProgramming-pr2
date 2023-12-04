@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>다담 쇼핑 홈페이지 - 부트스트랩 템플릿</title>
+
+  <!-- 부트스트랩 핵심 CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- 이 템플릿을 위한 사용자 정의 스타일 -->
+  <link href="css/shop-homepage.css" rel="stylesheet">
+
+  <!-- 다담 로고에 사용할 스타일 -->
+  <style>
+    .dadam-logo {
+      width: 50px; /* 로고의 폭을 조절할 수 있습니다. */
+      height: auto;
+      margin-right: 10px; /* 로고와 다른 내용 사이의 간격을 조절할 수 있습니다. */
+    }
+
+    /* 내비게이션 바의 링크 색상을 하늘색으로 변경 */
+    .navbar-nav .nav-link {
+      color: #87CEEB !important;
+    }
+
+    /* 페이지 내용의 텍스트 색상을 검정색으로 변경 */
+    .container {
+      color: black;
+    }
+
+    /* 카테고리의 텍스트 색상을 검정색으로 변경 */
+    .list-group-item {
+      color: black;
+    }
+
+    /* 상품 제목의 텍스트 색상을 하늘색으로 변경 */
+    .card-title a {
+      color: #87CEEB !important;
+    }
+
+    /* 상품 가격의 텍스트 색상을 하늘색으로 변경 */
+    .card-body h5 {
+      color: #87CEEB;
+    }
+
+    /* 상품 설명의 텍스트 색상을 검정색으로 변경 */
+    .card-text {
+      color: black;
+    }
+  </style>
+
+</head>
+
+<body style="background-color: white;">
+
+  <!-- 내비게이션 바 -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"> <!-- 배경색을 파랑색으로 변경 -->
+    <div class="container">
+      <a class="navbar-brand" href="#" style="color: white;">
+        <img src="DLogoW.png" alt="다담 로고" class="dadam-logo"></a> <!-- 다담 로고를 넣을 수 있는 공간 -->
+        <div class="navbar-user-info">
+          <img src="userlogo.png" alt="사용자 로고" width="50px">
+          <span id="username"> 로딩 중...</span>
+          <span id="userMoney"></span>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#" style="color: white;">홈
+              <span class="sr-only">(현재)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color: white;">소개</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color: white;">서비스</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="logout.php" style="color: white;">회원정보 - 로그아웃</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color: white;">찜목록</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shoppingChart.html" style="color: white;">장바구니</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 페이지 콘텐츠 -->
+  <div class="container" style="color: black; background-color: white;"> <!-- 전체 내용의 텍스트 색상을 검정색, 배경색을 흰색으로 변경 -->
+
+    <div class="row">
+
+      <div class="col-lg-3">
+
+        <h1 class="my-4" style="color: #4c82f7; font-size: 50px;">다담 <span style="font-size: 25px;">당신의 모든 쇼핑을 한 곳에서</span></h1>
+        <div class="list-group">
+          <a href="#" class="list-group-item">의류/잡화</a>
+          <a href="#" class="list-group-item">가전/가구</a>
+          <a href="#" class="list-group-item">음식</a>
+        </div>
+
+      </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+
+        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <img class="d-block img-fluid" src="productimg/clothimg1.png" alt="첫 번째 슬라이드">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="productimg/clothimg3.png" alt="두 번째 슬라이드">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="productimg/clothimg2.png" alt="세 번째 슬라이드">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">이전</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">다음</span>
+          </a>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="productimg/productimg1.png" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#" style="color: #87CEEB;" onclick="addToCart('카고바지')">카고바지</a>
+                </h4>
+                <h5 style="color: #87CEEB;">₩20,000</h5>
+                <p class="card-text" style="color: black;">다양한 색상의 카고바지</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+
+<div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+        <a href="#"><img class="card-img-top" src="productimg/productimg2.png" alt=""></a>
+        <div class="card-body">
+            <h4 class="card-title">
+                <a href="#" style="color: #87CEEB;" onclick="addToCart('치마')">치마</a>
+            </h4>
+            <h5 style="color: #87CEEB;">₩20,000</h5>
+            <p class="card-text" style="color: black;">다양한 디자인의 치마</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+        <a href="#"><img class="card-img-top" src="productimg/productimg6.png" alt=""></a>
+        <div class="card-body">
+            <h4 class="card-title">
+                <a href="#" style="color: #87CEEB;" onclick="addToCart('셔츠')">셔츠</a>
+            </h4>
+            <h5 style="color: #87CEEB;">₩20,000</h5>
+            <p class="card-text" style="color: black;">다양한 재질의 셔츠</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+        <a href="#"><img class="card-img-top" src="productimg/productimg3.png" alt=""></a>
+        <div class="card-body">
+            <h4 class="card-title">
+                <a href="#" style="color: #87CEEB;" onclick="addToCart('청바지')">청바지</a>
+            </h4>
+            <h5 style="color: #87CEEB;">₩20,000</h5>
+            <p class="card-text" style="color: black;">다양한 색상의 청바지 </p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+        <a href="#"><img class="card-img-top" src="productimg/productimg4.png" alt=""></a>
+        <div class="card-body">
+            <h4 class="card-title">
+                <a href="#" style="color: #87CEEB;" onclick="addToCart('운동복 상의')">운동복 상의</a>
+            </h4>
+            <h5 style="color: #87CEEB;">₩20,000</h5>
+            <p class="card-text" style="color: black;">다양한 디자인의 운동복 상의</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+        <a href="#"><img class="card-img-top" src="productimg/productimg5.png" alt=""></a>
+        <div class="card-body">
+            <h4 class="card-title">
+                <a href="#" style="color: #87CEEB;" onclick="addToCart('운동복 하의')">운동복 하의</a>
+            </h4>
+            <h5 style="color: #87CEEB;">₩20,000</h5>
+            <p class="card-text" style="color: black;">다양한 디자인의 운동복 하의</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+        </div>
+    </div>
+</div>
+
+
+        </div>
+        <!-- /.row -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div> 
+  <!-- /.container -->
+
+  <!-- 푸터 -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">저작권 &copy; 당신의 웹사이트 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- 부트스트랩 핵심 자바스크립트 -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    function loadUserInfo() {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var response = JSON.parse(this.responseText);
+          if (response.username && response.userMoney) {
+            document.getElementById('username').textContent = response.username;
+            document.getElementById('userMoney').textContent = response.userMoney;
+          }
+        }
+      };
+      xhr.open("GET", "getUserInfo.php", true);
+      xhr.send();
+    }
+    
+    // 페이지 로드 시 사용자 정보 로드
+    window.onload = loadUserInfo;
+    </script>
+
+    <script>
+      function addToCart(productName) {
+          // 로컬 스토리지에서 장바구니 상태를 가져옴
+          var cart = JSON.parse(localStorage.getItem('cart')) || {};
+          
+          // 해당 상품의 수량을 증가
+          if (cart[productName]) {
+              cart[productName]++;
+          } else {
+              cart[productName] = 1;
+          }
+      
+          // 변경된 장바구니 상태를 다시 저장
+          localStorage.setItem('cart', JSON.stringify(cart));
+      
+          // 필요한 경우 사용자에게 알림
+          alert(productName + "가 장바구니에 추가되었습니다. 현재 수량: " + cart[productName]);
+      }
+      </script>
+
+</body>
+
+</html>
+

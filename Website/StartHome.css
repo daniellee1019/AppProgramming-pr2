@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes gradient {
+    100% {
+        background-size: 4000px 1000px;
+    }
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    background-image: url("Animated Shape.svg");
+    background-size: 2000px 1000px;
+    background-position: -500px 0;
+    color: #000000;
+    font-family: 'Dongle', sans-serif;
+    animation: gradient 10s infinite alternate linear;
+}
+
+@media screen and (min-width: 500px) {
+    body {
+        padding: 0;
+    }
+}
+
+.frame {
+    margin: 10px;
+    display: grid;
+    place-items: center;
+    max-width: 90%; /* 모바일 화면에서 최대 너비 제한 */
+}
+
+@media (max-width: 767px) {
+    .frame {
+        margin-top: 20px;
+        max-width: 100%; /* 모바일 화면에서 너비 조정 */
+    }
+}
+
+.frame > img {
+    max-width: 60%;
+    max-height: 70vh; /* 뷰포트 높이의 70%를 최대 높이로 설정 */
+    object-fit: contain;
+    border: 10px solid rgb(110, 169, 247);
+    border-radius: 35%;
+    display: grid;
+    place-items: center;
+}
+
+@media (max-width: 767px) {
+    .frame > img {
+        max-width: 100%;
+        max-height: 60vh; /* 모바일 화면에서 높이 조정 */
+    }
+}
+
+.button {
+    box-sizing: border-box;
+    display: block;
+    margin: 20px auto;
+    padding: 10px 50px;
+    font-weight: bold;
+    font-family: 'Dongle', sans-serif;
+    text-align: center;
+    font-size: 5em;
+    border: none;
+    border-radius: 20px;
+    background-color: transparent;
+    color: #1b1818;
+    cursor: pointer;
+    position: relative;
+    top: 30px;
+}
+
+@media (max-width: 767px) {
+    .button {
+        margin-bottom: 20px;
+        top: auto;
+        transform: none;
+    }
+}
