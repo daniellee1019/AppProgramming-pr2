@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>다담 쇼핑 - 구매목록</title>
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 부트스트랩 핵심 CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- 이 템플릿을 위한 사용자 정의 스타일 -->
+<link href="css/shop-homepage.css" rel="stylesheet">
+
+<!-- 다담 로고에 사용할 스타일 -->
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  
+  html, body, .wrapper {
+    height: 100%;
+  }
+  
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    background-image: url("Animated Shape.svg");
+    background-size: cover; /* 전체 배경을 커버하도록 변경 */
+    background-position: center; /* 배경 이미지 중앙에 위치 */
+    color: #000000;
+    font-family: "Euclid Circular A";
+  }
+
+  .dadam-logo {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+  }
+
+  .navbar-nav .nav-link {
+    color: #87CEEB !important;
+  }
+
+  .container {
+    color: black;
+    width: 95%; /* 컨테이너 너비 조정 */
+    max-width: 800px; /* 최대 너비 설정 */
+    margin: auto; /* 가운데 정렬 */
+    padding: 5px; /* 패딩 추가 */
+  }
+
+  .cart-item, .btn-purchase {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    text-align: center; /* 텍스트 중앙 정렬 */
+  }
+
+  .cart-item button, .btn-purchase {
+    border: none;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .cart-item button:hover, .btn-purchase:hover {
+    background-color: rgba(252, 252, 252, 0.9);
+  }
+
+  @media screen and (max-width: 767px) {
+    /* 모바일 화면을 위한 추가 스타일 */
+    .navbar-nav .nav-link, .container, .cart-item, .btn-purchase {
+      font-size: smaller; /* 모바일 화면에 맞게 폰트 크기 조정 */
+    }
+  }
+</style>
+
+
+</head>
+
+<body style="background-color: white;">
+
+<!-- 내비게이션 바 -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"> <!-- 배경색을 파랑색으로 변경 -->
+  <div class="container">
+    <a class="navbar-brand" href="mainpage.html" style="color: white;">
+      <img src="DLogoW.png" alt="다담 로고" class="dadam-logo"></a> <!-- 다담 로고를 넣을 수 있는 공간 -->
+      <div class="navbar-user-info">
+        <img src="userlogo.png" alt="사용자 로고" width="50px">
+        <span id="username"> 로딩 중...</span>
+        <span id="userMoney"></span>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="mainpage.html" style="color: white;">홈
+            <span class="sr-only">(현재)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" style="color: white;">소개</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" style="color: white;">서비스</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="logout.php" style="color: white;">회원정보 - 로그아웃</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="purchaseList.html" style="color: white;">구매목록</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="shoppingChart.html" style="color: white;">장바구니</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <div class="container">
+    <h2>구매목록</h2>
+    <div id="purchaseItems" class="list-group">
+      <!-- 여기에 구매목록 아이템이 추가됩니다 -->
+    </div>
+  </div>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // AJAX 요청을 통해 사용자의 구매목록을 불러오는 로직
+    function loadPurchaseList() {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var response = JSON.parse(this.responseText);
+          displayPurchaseList(response);
+        }
+      };
+      xhr.open("GET", "getPurchaseList.php", true);
+      xhr.send();
+    }
+
+    function displayPurchaseList(items) {
+      var container = document.getElementById('purchaseItems');
+      container.innerHTML = '';
+      items.forEach(function(item) {
+        var div = document.createElement('div');
+        div.classList.add('list-group-item');
+        div.textContent = item.productName + " - 수량: " + item.quantity + ", 가격: " + item.totalPrice + "원" + ", 구매시간: " + item.purchasedate;
+        container.appendChild(div);
+      });
+    }
+
+    function loadUserInfo() {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var response = JSON.parse(this.responseText);
+    if (response.username && response.userMoney) {
+      document.getElementById('username').textContent = response.username;
+      document.getElementById('userMoney').textContent = response.userMoney;
+    }
+  }
+};
+xhr.open("GET", "getUserInfo.php", true);
+xhr.send();
+}
+
+// 페이지 로드 시 사용자 정보 로드
+window.onload = function() {
+    loadUserInfo();
+    loadPurchaseList();
+};
+  </script>
+</body>
+</html>
